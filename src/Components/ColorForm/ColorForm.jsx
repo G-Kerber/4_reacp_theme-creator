@@ -1,23 +1,25 @@
 import "./ColorForm.css";
 import ColorInput from "../ColorInput/ColorInput";
 
-export default function ColorForm({ onAddColor }) {
-  const initialData = {
-    role: "some color",
-    hex: "#E66e66",
-    contrastText: "#1F1F1F",
-  };
-
+export default function ColorForm({
+  onAddColor,
+  buttonLabel,
+  colorData,
+  isEditMode,
+  onEditColor,
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    onAddColor(data);
-
+    {
+      isEditMode === true
+        ? onEditColor({ id: colorData.id, ...data })
+        : onAddColor(data);
+    }
     //event.target.reset();
     event.target.elements.role.focus();
-    console.log(data);
   }
 
   return (
@@ -31,24 +33,21 @@ export default function ColorForm({ onAddColor }) {
           type="text"
           name="role"
           className="form__input"
-          defaultValue={initialData.role}
+          defaultValue={colorData.role}
           required
         ></input>
         <label htmlFor="hex" className="form__label">
           Hex
         </label>
-        <ColorInput id="hex" defaultValue={initialData.hex} />
+        <ColorInput id="hex" defaultValue={colorData.hex} />
 
         <label htmlFor="contrast-text" className="form__label">
           Contrast Text
-          <ColorInput
-            id="contrastText"
-            defaultValue={initialData.contrastText}
-          />
+          <ColorInput id="contrastText" defaultValue={colorData.contrastText} />
         </label>
 
         <button type="submit" className="form__button">
-          Add Color
+          {buttonLabel}
         </button>
       </div>
     </form>

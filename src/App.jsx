@@ -8,18 +8,43 @@ import { useState } from "react";
 function App() {
   const [colors, setColors] = useState(initialColors);
 
+  const initialData = {
+    role: "some color",
+    hex: "#E66e66",
+    contrastText: "#1F1F1F",
+  };
+
   function handleAddColor(newColor) {
     setColors([{ id: nanoid(), ...newColor }, ...colors]);
   }
 
-  function handleDeleteColor(colorIDToDelete) {
-    setColors(colors.filter((color) => color.id !== colorIDToDelete));
+  function handleDeleteColor(colorIdToDelete) {
+    setColors(colors.filter((color) => color.id !== colorIdToDelete));
+  }
+  function handleEditColor(colorToEdit) {
+    setColors(
+      colors.map((color) =>
+        color.id === colorToEdit.id
+          ? {
+              ...color,
+              role: colorToEdit.role,
+              hex: colorToEdit.hex,
+              contrastText: colorToEdit.contrastText,
+            }
+          : color
+      )
+    );
   }
 
   return (
     <>
       <h1>Theme Creator</h1>
-      <ColorForm key={nanoid()} onAddColor={handleAddColor} />
+      <ColorForm
+        key={nanoid()}
+        onAddColor={handleAddColor}
+        buttonLabel="Add Color"
+        colorData={initialData}
+      />
       {colors.length > 0 ? (
         colors.map((color) => {
           return (
@@ -28,6 +53,7 @@ function App() {
                 key={color.id}
                 color={color}
                 onDeleteColor={handleDeleteColor}
+                onEditColor={handleEditColor}
               />
             </>
           );
