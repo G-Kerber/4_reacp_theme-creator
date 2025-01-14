@@ -2,6 +2,13 @@
 https://www.joshwcomeau.com/css/custom-css-reset/
 */
 
+:root {
+  --nemo: #ff4a11;
+  --granite: #252629;
+  --water: #f3f5f9;
+  --foam: #ffffff;
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */

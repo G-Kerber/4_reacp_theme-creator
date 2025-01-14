@@ -1,0 +1,28 @@
+.form {
+  gap: 1rem;
+  width: 33%;
+}
+
+.form__field {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  color: black;
+}
+
+.form__label {
+  background: white;
+  color: black;
+}
+
+.form__input {
+  background: white;
+  color: black;
+}
+.form__button {
+  width: 66%;
+}
+
+button:hover {
+  background: #e66e66;
+}
