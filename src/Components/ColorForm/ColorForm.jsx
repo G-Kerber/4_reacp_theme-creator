@@ -7,6 +7,7 @@ export default function ColorForm({ onAddColor }) {
     hex: "#E66e66",
     contrastText: "#1F1F1F",
   };
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -18,6 +19,7 @@ export default function ColorForm({ onAddColor }) {
     event.target.elements.role.focus();
     console.log(data);
   }
+
   return (
     <form onSubmit={handleSubmit} className="form">
       <div className="form__field">
