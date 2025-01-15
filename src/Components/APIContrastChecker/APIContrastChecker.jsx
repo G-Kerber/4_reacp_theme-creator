@@ -20,11 +20,36 @@ export default function APIContrastChecker({ color }) {
       }
     }
     postFetch();
-  }, [color]);
+  }, [color.hex, color.contrastText]);
+
+  function backgroundColor() {
+    let background = "#ffffff";
+    switch (overallScore) {
+      case "Nope":
+        background = "#e60000";
+        break;
+      case "Kinda":
+        background = "#c8e600";
+        break;
+      case "Yup":
+        background = "#00e600";
+        break;
+      default:
+      // Codeblock, wenn keine der vorherigen Bedingungen erfüllt ist
+    }
+    return background;
+  }
 
   return (
     <>
-      <p>Overall Contrast Score: {overallScore}</p>
+      <p
+        style={{
+          background: backgroundColor(),
+          width: "50%",
+        }}
+      >
+        Overall Contrast Score: {overallScore}
+      </p>
     </>
   );
 }
