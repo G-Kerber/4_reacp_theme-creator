@@ -1,30 +1,10 @@
-import { useState } from "react";
 import ColorForm from "../ColorForm/ColorForm";
 
-export default function ColorEditing({ color, onEditColor, onHandleMode }) {
-  const [showEditButton, setShowEditButton] = useState(true);
-
-  function handleEditButton() {
-    setShowEditButton(false);
-    onHandleMode({ isEditing: true, isDeleting: false });
-  }
-
+export default function ColorEditing({ color, onEditColor, onSetMode }) {
   function handleCancelButton() {
-    setShowEditButton(true);
-    onHandleMode({ isEditing: true, isDeleting: true });
+    onSetMode("default");
   }
 
-  if (showEditButton) {
-    return (
-      <button
-        type="button"
-        className="color-card-button"
-        onClick={handleEditButton}
-      >
-        Edit
-      </button>
-    );
-  }
   return (
     <>
       <ColorForm

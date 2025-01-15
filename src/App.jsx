@@ -7,7 +7,7 @@ import { useState } from "react";
 
 function App() {
   const [colors, setColors] = useState(initialColors);
-
+  console.log("colors_", colors);
   const initialData = {
     role: "some color",
     hex: "#E66e66",

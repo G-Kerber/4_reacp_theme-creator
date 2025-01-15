@@ -4,7 +4,8 @@ import ColorDeletion from "./ColorDeletion";
 import ColorEditing from "./ColorEditing";
 
 export default function Color({ color, onDeleteColor, onEditColor }) {
-  const [mode, setMode] = useState({ isEditing: true, isDeleting: true });
+  //const [mode, setMode] = useState({ isEditing: true, isDeleting: true });
+  const [mode, setMode] = useState("default");
 
   function onHandleMode(mode) {
     setMode(mode);
@@ -21,19 +22,30 @@ export default function Color({ color, onDeleteColor, onEditColor }) {
       <h3 className="color-card-hightlight">{color.hex}</h3>
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
-      {mode.isDeleting && (
+      {mode === "default" && (
+        <>
+          <button type="button" onClick={() => setMode("delete")}>
+            Delete
+          </button>
+          <button type="button" onClick={() => setMode("edit")}>
+            Edit
+          </button>
+        </>
+      )}
+      {mode === "delete" && (
         <ColorDeletion
           key={color.id}
           id={color.id}
           onDeleteColor={onDeleteColor}
-          onHandleMode={onHandleMode}
+          onSetMode={onHandleMode}
         />
       )}
-      {mode.isEditing && (
+      {mode === "edit" && (
         <ColorEditing
+          key={color.id}
           color={color}
           onEditColor={onEditColor}
-          onHandleMode={onHandleMode}
+          onSetMode={onHandleMode}
         />
       )}
     </div>
