@@ -2,9 +2,9 @@ import { useState } from "react";
 import "./Color.css";
 import ColorDeletion from "./ColorDeletion";
 import ColorEditing from "./ColorEditing";
+import CopyToClipboard from "../CopyToClipboard/CopyToClipboard";
 
 export default function Color({ color, onDeleteColor, onEditColor }) {
-  //const [mode, setMode] = useState({ isEditing: true, isDeleting: true });
   const [mode, setMode] = useState("default");
 
   function onHandleMode(mode) {
@@ -20,6 +20,7 @@ export default function Color({ color, onDeleteColor, onEditColor }) {
       }}
     >
       <h3 className="color-card-hightlight">{color.hex}</h3>
+      <CopyToClipboard copyText={color.hex} />
       <h4>{color.role}</h4>
       <p>contrast: {color.contrastText}</p>
       {mode === "default" && (
