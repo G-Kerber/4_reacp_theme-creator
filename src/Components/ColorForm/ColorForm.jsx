@@ -7,6 +7,7 @@ export default function ColorForm({
   colorData,
   isEditMode,
   onEditColor,
+  onSetMode,
 }) {
   function handleSubmit(event) {
     event.preventDefault();
@@ -15,7 +16,7 @@ export default function ColorForm({
 
     {
       isEditMode === true
-        ? onEditColor({ id: colorData.id, ...data })
+        ? onEditColor({ id: colorData.id, ...data }, onSetMode("default"))
         : onAddColor(data);
     }
     //event.target.reset();

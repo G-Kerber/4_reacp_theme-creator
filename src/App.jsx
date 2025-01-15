@@ -4,9 +4,13 @@ import "./App.css";
 import ColorForm from "./Components/ColorForm/ColorForm";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
 
 function App() {
-  const [colors, setColors] = useState(initialColors);
+  //const [colors, setColors] = useState(initialColors);
+  const [colors, setColors] = useLocalStorageState("colors", {
+    defaultValue: initialColors,
+  });
   console.log("colors_", colors);
   const initialData = {
     role: "some color",

@@ -17,6 +17,7 @@ export default function ColorEditing({ color, onEditColor, onSetMode }) {
         }}
         isEditMode={true}
         onEditColor={onEditColor}
+        onSetMode={onSetMode}
       />
       <button onClick={handleCancelButton}>Cancel</button>
     </>

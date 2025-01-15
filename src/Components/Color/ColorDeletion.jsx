@@ -1,7 +1,7 @@
 import "./Color.css";
 
 export default function ColorDeletion({ id, onDeleteColor, onSetMode }) {
-  function handleCancel() {
+  function handleCancelButton() {
     onSetMode("default");
   }
 
@@ -11,7 +11,7 @@ export default function ColorDeletion({ id, onDeleteColor, onSetMode }) {
       <button
         type="button"
         className="color-card-button"
-        onClick={handleCancel}
+        onClick={handleCancelButton}
       >
         Cancel
       </button>
