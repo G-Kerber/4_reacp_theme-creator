@@ -1,29 +1,8 @@
-import { useState } from "react";
 import "./Color.css";
 
-export default function ColorDeletion({ id, onDeleteColor, onHandleMode }) {
-  const [showDeleteButton, setShowDeleteButton] = useState(true);
-
-  function handleShowDeleteButton() {
-    setShowDeleteButton(false);
-    onHandleMode({ isEditing: false, isDeleting: true });
-  }
-
-  function handleCancel() {
-    setShowDeleteButton(true);
-    onHandleMode({ isEditing: true, isDeleting: true });
-  }
-
-  if (showDeleteButton) {
-    return (
-      <button
-        type="button"
-        className="color-card-button"
-        onClick={handleShowDeleteButton}
-      >
-        Delete
-      </button>
-    );
+export default function ColorDeletion({ id, onDeleteColor, onSetMode }) {
+  function handleCancelButton() {
+    onSetMode("default");
   }
 
   return (
@@ -32,7 +11,7 @@ export default function ColorDeletion({ id, onDeleteColor, onHandleMode }) {
       <button
         type="button"
         className="color-card-button"
-        onClick={handleCancel}
+        onClick={handleCancelButton}
       >
         Cancel
       </button>
